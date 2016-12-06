@@ -10,7 +10,7 @@ This project demonstrates the use of [Jasmine](http://jasmine.github.io/) - a be
 ## Notes
 
 * Tests reside in jasmine/spec/feedreader.js and this is where you would add any additional tests.
-* My Project is located at: https://gitlab.com/lglaves/feedreader-master
+* My Project is located at: https://gitlab.com/lglaves/feedreader-testing-lbg-project6
 
 ## Tests Written
 
