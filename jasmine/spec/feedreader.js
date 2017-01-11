@@ -41,18 +41,27 @@ $(function() {
     // Test Feed Reader Menu
     describe('The Menu Toggle', function() {
 
+    	// Verify document.body has menu-hidden class
+	    const bodyClasses = document.body.classList;
+	    console.log('doc body class list = ' + bodyClasses);
+	    it('should have a class of "menu-hidden"', function() {
+		    expect(bodyClasses).toContain("menu-hidden");
+	    });
+
         // Verify that menu is hidden
         it('should be hidden by default', function() {
-            expect(document.body.className).toEqual("menu-hidden");
+            expect(document.body.className).toContain("menu-hidden");
         });
 
         // Verify that clicking the hamburger icon toggles menu open and closed
         it('should slide open and closed when hamburger icon is clicked', function() {
-            $('.menu-icon-link').click();
-            expect(document.body.className).not.toEqual("menu-hidden");
+        	var body = $('body');
 
             $('.menu-icon-link').click();
-            expect(document.body.className).toEqual("menu-hidden");
+	        expect(body.hasClass('menu-hidden')).toBeFalsy();
+
+            $('.menu-icon-link').click();
+	        expect(body.hasClass('menu-hidden')).toBeTruthy();
         });
     });
 
@@ -63,13 +72,13 @@ $(function() {
 
         // Verify there is at least one rss feed in the container after performing loadFeed
         beforeEach(function(done) {
-            loadFeed(0, function() {
-                done();
-            });
+			loadFeed(0, done);
         });
 
-        it('should have at least a single feed element in the feed container', function() {
-            expect(container).not.toBeEmpty();
+        it('should have at least one rss feed entry in the nfeed container', function() {
+            var numberOfEntries = $('.entry').length;
+            console.log('numberOfEntries: ' + numberOfEntries);
+            expect(numberOfEntries).toBeGreaterThan(0);
         });
     });
 
